@@ -1,0 +1,1 @@
+function SessionDestroy(){$.post(newURL+"/Library/vendor/ajax/ajax.sessiondestroy.php",function(returnIdSession){if(returnIdSession != false){return false;}else{return false;}});}

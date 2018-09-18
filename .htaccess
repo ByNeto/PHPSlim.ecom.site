@@ -1,0 +1,77 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]
+
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+
+# permite acesso direto arquivos quando solicitados  
+#RewriteRule ^(!.(\.gif|\.jpg|\.png|\.css|\.js|\.txt)|.+[^/])$ /$1/ [L]  
+
+# ajuste de redirecionamento under 
+RewriteCond %{HTTP_HOST} ^autopec.com$ [OR] 
+RewriteCond %{HTTP_HOST} ^www.autopec.com$ 
+RewriteRule ^(.*)$ https://www.autopec.com.br/$1 [R=301,L]
+  
+# Now, rewrite any request to the wrong domain to use www.  
+RewriteCond %{HTTP_HOST} !^www\.  
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]  
+  
+RewriteCond %{HTTPS} !=on  
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]  
+  
+<IfModule mod_rewrite.c>  
+    RewriteEngine On  
+    RewriteBase /  
+  
+    # Removes index.php from ExpressionEngine URLs  
+    RewriteCond %{THE_REQUEST} ^GET.*index\.php [NC]  
+    RewriteCond %{REQUEST_URI} !/system/.* [NC]  
+    RewriteRule (.*?)index\.php/*(.*) /$1$2 [R=301,NE,L]  
+  
+    # Directs all EE web requests through the site index file  
+    RewriteCond %{REQUEST_FILENAME} !-f  
+    RewriteCond %{REQUEST_FILENAME} !-d  
+    RewriteRule ^(.*)$ /index.php/$1 [L]  
+</IfModule> 
+ 
+#RewriteRule ^montadoras/(.*)$ /teste.php [NC,L] 
+ 
+#RewriteRule  ^pecas(.*)$ / [QSA,L,NC] 
+#RewriteRule  ^montadoras/(.+)/(.*)/(.*)/$ /index.php [QSA,L,NC] 
+#RewriteRule ^pesquisa/(.+)/(.*)/(.*)/$ categoria.php?idChave=$1&idPes=$2&Pg=$3 [QSA,L,NC] 
+#RewriteRule ^(.+)/(.+)/$ produtosurl.php?idProduto=$2 [QSA,L,NC] 
+#RewriteRule ^blog-autopec/$  blog/ [QSA,L,NC] 
+#RewriteRule ^blog-artigo-(.*)/$  blog/artigo.php?idPagina=$1 [QSA,L,NC] 
+#RewriteRule ^jornal-(.*)/$  blog/jornal.php?idJornal=$1 [QSA,L,NC] 
+#RewriteRule ^catalogo-(.*)/$  blog/jornal.php?idJornal=$1 [QSA,L,NC] 
+ 
+# This allows you to redirect your entire website to any other domain 
+Redirect 301 /pecas-besta / 
+Redirect 301 /pecas-ducato / 
+Redirect 301 /pecas-master / 
+Redirect 301 /pecas-sprinter / 
+Redirect 301 /pecas-hr / 
+Redirect 301 /pecas-topic / 
+Redirect 301 /pecas-frontier / 
+Redirect 301 /pecas-iveco / 
+Redirect 301 /pecas-mb180 / 
+Redirect 301 /pecas-bandeirantes / 
+Redirect 301 /pecas-h100 / 
+Redirect 301 /pecas-i30 / 
+Redirect 301 /pecas-amarok / 
+Redirect 301 /pecas-towner / 
+Redirect 301 /carros / 
+Redirect 301 /m.php / 
+Redirect 301 /teste.php / 
+Redirect 301 /termosdevenda /termosdevendas
+#Redirect 301 ^montadoras/(.*) /
+
+RedirectMatch ^/montadoras/(.*)$ https://www.autopec.com.br 
+RedirectMatch ^/pecas-(.*)$ https://www.autopec.com.br 
+RedirectMatch ^/blog-(.*)$ https://www.autopec.com.br
+
+RedirectMatch ^/mprodutos.php?(.[0-9]+)$ https://www.autopec.com.br
+
+
+RewriteCond %{QUERY_STRING} ^idProduto=([^&]+)$ [NC]
+RewriteRule ^index\.php$ https://www.autopec.com.br/produtos/%1? [NC,L,R]

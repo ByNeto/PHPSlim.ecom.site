@@ -1,0 +1,1 @@
+SQLSTATE[HY000] Unable to connect: Adaptive Server is unavailable or does not exist (severity 9)

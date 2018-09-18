@@ -1,0 +1,1 @@
+<?php session_start();$cookie_name=session_name();session_destroy();session_write_close();setcookie($cookie_name,'',time());?>

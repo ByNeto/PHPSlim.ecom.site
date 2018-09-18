@@ -1,0 +1,1 @@
+function autoRedirect(x){window.location= newURL+'/produtos/pesquisa/'+x;if(document.getElementById("autocomplete").value != ""){$("#autocomplete").hide();$("#replace").html('<input type="text" id="autocomplete" name="autocomplete" placeholder="Pesquisar" class="inp_pesq" >').show();return false;}}

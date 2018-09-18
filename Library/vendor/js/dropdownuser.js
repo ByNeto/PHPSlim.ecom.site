@@ -1,0 +1,1 @@
+$('#dropDownUser').hide();function dropDownUserShow(){$('#dropDownUser').show().stopPropagation();$('body').click(function(){$('#dropDownUser').hide();});}function dropDownUserHide(){$('#dropDownUser').show();$('body').click(function(){$('#dropDownUser').hide();});$('div').click(function(){$('#dropDownUser').hide();});}

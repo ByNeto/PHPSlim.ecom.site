@@ -1,0 +1,1 @@
+time=(new Date().getTime()) - time;$('#loader').fadeOut(time);

@@ -1,0 +1,1 @@
+$('#datepicker').datepicker({uiLibrary: 'bootstrap4',iconsLibrary: 'fontawesome'});

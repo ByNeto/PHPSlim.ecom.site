@@ -1,0 +1,1 @@
+$('#btnparcelas').on('click',function(){$('#menuparcelas').slideToggle('slow').show();});
